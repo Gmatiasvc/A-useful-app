@@ -6,14 +6,17 @@
 import platform
 import os
 import rich
+import datetime
+from datetime import datetime
 from rich.console import Console
 from rich.table import Table
 from rich import box
 console = Console()
 
+
 genrics = [
-	"whoami",       # Shows info about the user, passed at the start of the program
-	"clear",		# Clears the console using os lib
+	"whoami",       # Shows info about the user, passed at the start of the program => DONE
+	"clear",		# Clears the console using os lib => DONE
 	"cls",			  # Clear alias
 	"clean",		  # Clear alias
 	"date",         # Shows date using datetime lib
@@ -100,18 +103,48 @@ def clear(args):
 			console.print("[green]A (kinda) useful app CLI enviroment [DevBuild 2]")
 
 	else:
+		os.system("clear")
 		if args in ["-nt", "nt", "notitle", "--notitle"]:
 			pass
 		else:
 			console.print("[green]A (kinda) useful app CLI enviroment [DevBuild 2]")
 
+"""
+Date, time and datetime documentation:
+
+- Date command outputs the date it was executed
+- Time command outputs the time it was executed
+- Datetime merges the other two
+
+The functions use the datetime library
+"""
+def date():
+	console.print("[magenta1]La fecha de hoy es: " + datetime.datetime.now.strftime("%B %d, %Y"))
+
+
+def time():
+	console.print("[magenta1]La hora de hoy es: " + datetime.datetime.now.strftime("%H:%M:%S"))
+
+def datetime():
+	console.print("[magenta1]La fecha y hora de hoy son: " + datetime.datetime.now.strftime("%B %d, %Y") + "  " + datetime.datetime.now.strftime("%H:%M:%S"))
+
+
 GenericsExe = {
-	"whoami" : "generics.whoami(usrinfo)",
-	"clear" :  "generics.clear(commands[1])",
-	"clean" :  "generics.clear(commands[1])",
-	"cls"   :  "generics.clear(commands[1])"
+	"whoami" 	:  "generics.whoami(usrinfo)",
+	"clear" 	:  "generics.clear(commands[1])",
+	"clean" 	:  "generics.clear(commands[1])",
+	"cls"   	:  "generics.clear(commands[1])",
+	"date"		:  "print(date())",
+	"time"		:  "print(time())",
+	"datetime"	:  "print(datetime())",
+	"sysinfo"	:  "print(\"WIP\")",
+	"nework"	:  "print(\"WIP\")",
+	"ip"		:  "print(\"WIP\")",
+	"ipconfig"	:  "print(\"WIP\")"
 }
 
 
 if __name__ == "__main__":
-	whoami(["test","1","a"])
+	date()
+	time()
+	datetime()
