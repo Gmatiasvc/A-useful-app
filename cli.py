@@ -1,7 +1,7 @@
 #imports
 import rich
 from rich.console import Console
-
+from datetime import datetime
 from scripts import generics
 
 console = Console()
@@ -16,6 +16,9 @@ def main(usrinfo):
 		cmd = cmd.lower()
 		commands = cmd.split(" ")
 		commands.append(" ") # if this isnt here, the app colapses, this is an empty arg.
+
+		#Set public vars:
+		public_now = datetime.now()
 
 		if commands[0] in ["exit"]:
 			break

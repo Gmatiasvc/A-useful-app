@@ -7,12 +7,13 @@ import platform
 import os
 import rich
 import datetime
-from datetime import datetime
 from rich.console import Console
 from rich.table import Table
 from rich import box
 console = Console()
 
+from datetime import datetime
+now = datetime.now()
 
 genrics = [
 	"whoami",       # Shows info about the user, passed at the start of the program => DONE
@@ -118,25 +119,29 @@ Date, time and datetime documentation:
 
 The functions use the datetime library
 """
-def date():
-	console.print("[magenta1]La fecha de hoy es: " + datetime.datetime.now.strftime("%B %d, %Y"))
+def date(now):
+	date = now.strftime("%B %d, %Y")
+	console.print("[magenta1]La fecha de hoy es: " + date)
 
 
-def time():
-	console.print("[magenta1]La hora de hoy es: " + datetime.datetime.now.strftime("%H:%M:%S"))
+def time(now):
+	time =now.strftime("%H:%M:%S")
+	console.print("[magenta1]La hora de hoy es: " + time)
 
-def datetime():
-	console.print("[magenta1]La fecha y hora de hoy son: " + datetime.datetime.now.strftime("%B %d, %Y") + "  " + datetime.datetime.now.strftime("%H:%M:%S"))
+def datetime(now):
+	date = now.strftime("%B %d, %Y")
+	time =now.strftime("%H:%M:%S")
+	console.print("[magenta1]La fecha y hora de hoy son: " + date + "  " +time)
 
 
 GenericsExe = {
 	"whoami" 	:  "generics.whoami(usrinfo)",
 	"clear" 	:  "generics.clear(commands[1])",
 	"clean" 	:  "generics.clear(commands[1])",
-	"cls"   	:  "generics.clear(commands[1])",
-	"date"		:  "print(date())",
-	"time"		:  "print(time())",
-	"datetime"	:  "print(datetime())",
+	"cls"   	:  "generics.clear()",
+	"date"		:  'generics.date(public_now)',
+	"time"		:  "generics.time(public_now)",
+	"datetime"	:  "generics.datetime(public_now)",
 	"sysinfo"	:  "print(\"WIP\")",
 	"nework"	:  "print(\"WIP\")",
 	"ip"		:  "print(\"WIP\")",
